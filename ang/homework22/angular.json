@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "hw26": {
+    "homework22": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/hw26",
+            "outputPath": "dist/homework22",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -67,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "hw26:build"
+            "browserTarget": "homework22:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "hw26:build:production"
+              "browserTarget": "homework22:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "hw26:build"
+            "browserTarget": "homework22:build"
           }
         },
         "test": {
@@ -115,15 +115,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "hw26:serve"
+            "devServerTarget": "homework22:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "hw26:serve:production"
+              "devServerTarget": "homework22:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "hw26"
+  "defaultProject": "homework22"
 }
