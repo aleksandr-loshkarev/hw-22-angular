@@ -1,0 +1,70 @@
+<html>
+
+<head>
+    <title>JAVASCRIPT</title>
+</head>
+
+<body>
+    <!--1) есть форма  Нужно отправить ее на сервер которые вы сами напишите! Сервер принимает обьект c полями name, lastName и возвращает строку fullname которую положить в localStorage -->
+    <form method="POST" action="" id="add-user">
+        <div class="form-group">
+            <label for="name">Имя:</label>
+            <input type="text" id="name" name="name" value="" required>
+        </div>
+        <div class="form-group">
+            <label for="surname">фамилия:</label>
+            <input type="text" id="surname" name="surname" value='' required></input>
+        </div>
+        <button id="btn-send">Send</button>
+    </form>
+    <script>
+        // Вот как можно принять данные с формы))
+        document.addEventListener('click', (ev) => {
+            ev.preventDefault();
+            // const getForm = document.getElementById('add-user') // так можно получить форму
+            // const getForm= document.forms['add-user'];  //  и так можно получить форму
+            const getForm = ev.target.parentNode; // и так можно получить форму!
+            const form = new FormData(getForm); // специальный обьект Formdata
+            console.log(new Map(form)); // ПОСМОТРЕТЬ КАК ВЫГЛЯДИТ
+            let formData = Object.fromEntries(new Map(form)); // new Map - специальный итерируемый обьект! fromEntries преобразует в обычный обьект
+            // let formData = Object.fromEntries(new Set(form)); // Еще вариант как получить обьект с name, surname
+            // let formData = {}; // И еще вариант как получить обьект с name, surname
+            // for (let input of form.entries()) { // form.entries() - преобразуем в iterator со значениями инпут полей и их ключами
+            //     const [key, value] = input;
+            //     formData = {
+            //         ...formData,
+            //         [key]: value
+            //     }
+            // }
+            console.log(formData);
+        }, false)
+
+        // 2)   Generics!! Поиграться с этими типами в Ангуляр проекте!
+
+        interface Entity {
+            id: number;
+        }
+
+        interface EntityObj<T> extends Entity {
+            person: T;
+        }
+
+        function transformEntity<V>(obj: V): V {
+            return obj;
+        }
+
+        transformEntity<string>('fdsfd');
+        transformEntity<number>(32432);
+
+        function transform<V, B>(obj: V, obj1: B): B & V {
+            return {
+                ...obj,
+                ...obj1
+            };
+        }
+        transform<EntityObj<number>, EntityObj<string>>({id: 13, person: 4}, {id: 235, person: 'Vasia'});
+
+    </script>
+</body>
+
+</html>

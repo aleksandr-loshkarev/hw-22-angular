@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    <title>JAVASCRIPT</title>
+</head>
+
+<body>
+    <!--1) есть форма  Нужно отправить ее на сервер которые вы сами напишите! Сервер принимает обьект c полями name, lastName и возвращает строку fullname которую положить в localStorage -->
+    <form method="POST" action="">
+        <div class="form-group">
+            <label for="name">Имя:</label>
+            <input type="text" id="name" name="name" value="" required>
+        </div>
+        <div class="form-group">
+            <label for="surname">фамилия:</label>
+            <input type="text" id="surname" name="surname" value='' required></input>
+        </div>
+        <button type="submit" id="btn-send">Send</button>
+    </form>
+    <script>
+        document.addEventListener('click', (ev) => {
+            ev.preventDefault();
+            const getForm = ev.target.parentNode;
+            const form = new FormData(getForm);
+            let formData = Object.fromEntries(new Map(form));
+            
+            let xhttp = new XMLHttpRequest();
+
+            xhttp.onload = function () {
+                if (this.status == 200) {
+                    console.log(this.responseText)
+                    localStorage.setItem('fullName', this.responseText);
+                }
+            }
+            xhttp.open('POST', 'http://localhost:3000/');
+            xhttp.setRequestHeader("Content-type", "application/json");
+            xhttp.send(JSON.stringify(formData));
+        }, false)
+    </script>
+</body>
+
+</html>
